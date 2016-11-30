@@ -9,13 +9,10 @@ class Chatbar extends Component {
   }
 
   handleChange(event) {
-    // this works!
-    console.log('Success: Typing in the input box changes a change in state.');
     this.setState({value: event.target.value});
   }
 
   handleSubmit(event) {
-    console.log('Submission');
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
@@ -26,7 +23,6 @@ class Chatbar extends Component {
         <form onSubmit={this.handleSubmit}>
           <input id='username' type="text" placeholder='Your Name (Optional)' value={this.state.value} onChange={this.handleChange} />
           <input id='new-message' type='text' placeholder='Type a message and hit ENTER' />
-          // need to
         </form>
       </footer>
     );

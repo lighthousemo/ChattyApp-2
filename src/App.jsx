@@ -25,18 +25,15 @@ class App extends Component {
       ]
     };
   }
+
   componentDidMount() {
-    console.log("componentDidMount <App />");
     setTimeout(() => {
-      console.log("Simulating incoming message");
-      // Add a new message to the list of messages in the data store
-      const newMessage = {id: 4, username: "Michelle", content: "Hello there!"};
-      const messages = this.state.messages.concat(newMessage)
-      // Update the state of the app component. !IMPROTANT: Anytime the state is updated inside the componentDidMount function, a re-render is triggered
-      // Calling setState will trigger a call to render() in App and all child components.
-      this.setState({messages: messages})
+      const newMessage = {id: 4, username: 'Michelle', content: 'Hello there!'};
+      const messages = this.state.messages.concat(newMessage);
+      this.setState({ messages: messages });
     }, 3000);
   }
+
   render() {
     return (
       <div>
@@ -49,4 +46,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
