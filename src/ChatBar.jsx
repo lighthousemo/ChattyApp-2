@@ -9,19 +9,25 @@ class Chatbar extends Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+    alert( 'A name was submitted: ' + this.state.value );
+  }
+
+  didPressEnter(event) {
+    if ( event.key === 'Enter' ) {
+      console.log( 'do validate' )
+      event.preventDefault()
+    }
   }
 
   render() {
     return (
       <footer>
         <form onSubmit={this.handleSubmit}>
-          <input id='username' type="text" placeholder='Your Name (Optional)' value={this.state.value} onChange={this.handleChange} />
+          <input id='username' type="text" placeholder='Your Name (Optional)' value={this.state.value} onChange={this.handleChange} onKeyPress={this.didPressEnter} />
           <input id='new-message' type='text' placeholder='Type a message and hit ENTER' />
         </form>
       </footer>
@@ -30,3 +36,9 @@ class Chatbar extends Component {
 }
 export default Chatbar;
 
+function didPressEnter(key) {
+  if (key === 'enter') {
+    alert('user pressed enter.')
+  }
+  return;
+}
