@@ -10,18 +10,12 @@ class Chatbar extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
-    console.log(event.target.value);
-  }
-
-  handleSubmit(event) {
-    alert( 'A name was submitted: ' + this.state.value );
   }
 
   didPressEnter(event) {
     if (event.key === 'Enter') {
       //if the user presses enter, we want to submit the form
       this.setState({ messages: event.target.value});
-      console.log('do validate')
       //TODO: call the function inside app component that concats the new message to the messagelist
       event.preventDefault()
     }
