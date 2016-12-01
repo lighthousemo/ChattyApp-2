@@ -1,0 +1,10 @@
+
+2. that function calls a function in the App component (remember, 'actions up') and sends along the message
+
+
+
+
+3. the this.state.messages is updated to include the new message. this.setState is called.
+4. the render() method is triggered automatically in the App component
+5. the new state is passed to all children of the App component
+

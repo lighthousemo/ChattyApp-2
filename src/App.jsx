@@ -4,7 +4,7 @@ import MessageList from './MessageList.jsx';
 
 class App extends Component {
   constructor( props ) {
-    super( props );
+    super( props );x
     this.state = {
       messages: [
         {
