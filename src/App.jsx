@@ -6,6 +6,8 @@ class App extends React.Component {
 
   constructor( props ) {
     super( props );
+    this.handleMsg = this.handleMsg.bind(this);
+    this.handleUser = this.handleUser.bind(this);
     this.state = {
       currentUser: {name: 'Bob'}, // optional. if currentUser is not defined, it means the user is Anonymous
       usercount: 0,
@@ -29,25 +31,31 @@ class App extends React.Component {
     setTimeout(() => {
       const newMessage = {id: 4, username: 'Michelle', content: 'Hello there!'};
       const messages = this.state.messages.concat(newMessage);
-      // this.setState({ messages: messages });
+      this.setState({ messages: messages });
     }, 3000);
   }
 
   handleMsg(event) {
-    console.log('username:', event.target.value);
     if (event.key === 'Enter') {
-      console.log('enter:', event.target.value);
+      console.log('message:', event.target.value);
+      var oldId = this.state.messages.length;
+      var newId = oldId + 1;
       var typedMsg  = event.target.value;
-      // this.setState({ messages: messages });
+      const newMessage = {
+        id: newId,
+        username: this.state.currentUser.name,
+        content: typedMsg
+      }
+      const messages = this.state.messages.concat(newMessage);
+      this.setState({ messages: messages });
     }
-}
+  }
 
   handleUser(event) {
-    console.log('user:', event.target.value);
+    console.log('username:', event.target.value);
     if (event.key === 'Enter') {
-      const newMessage = {id: 4, username: 'Michelle', content: 'Hello there!'};
-      // const messages = this.state.messages.push(newMessage);
-      // this.setState({ messages: messages });
+      var newState = this.state;
+      this.setState( {currentuser: {name: event.target.value}});
     }
   }
 
