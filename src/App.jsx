@@ -1,50 +1,72 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 
-class App extends Component {
+class App extends React.Component {
+
   constructor( props ) {
     super( props );
     this.state = {
+      currentUser: {name: 'Bob'}, // optional. if currentUser is not defined, it means the user is Anonymous
+      usercount: 0,
       messages: [
         {
+          id: 0,
+          username: 'Anonymous1',
+          content: 'I won\'t be impressed with technology until I can download food.'
+        },
+        {
           id: 1,
-          username: 'Bob',
-          content: 'Has anyone seen my marbles?'
-        },
-        {
-          id: 2,
           username: 'Anonymous',
-          content: 'No, I think you lost them. You lost your marbles Bob. You lost them for good.'
-        },
-        {
-          id: 3,
-          username: 'Jamal',
-          content: 'This mesage is a test. If you are seeing this then you are on the right track.'
+          content: 'Anonymous1 changed their name to nomnom.'
         }
       ]
     };
   }
 
   componentDidMount() {
+    console.log('componentDidMount <App />');
     setTimeout(() => {
       const newMessage = {id: 4, username: 'Michelle', content: 'Hello there!'};
       const messages = this.state.messages.concat(newMessage);
-      this.setState({ messages: messages });
+      // this.setState({ messages: messages });
     }, 3000);
   }
 
+  handleMsg(event) {
+    console.log('username:', event.target.value);
+    if (event.key === 'Enter') {
+      console.log('enter:', event.target.value);
+      var typedMsg  = event.target.value;
+      // this.setState({ messages: messages });
+    }
+}
+
+  handleUser(event) {
+    console.log('user:', event.target.value);
+    if (event.key === 'Enter') {
+      const newMessage = {id: 4, username: 'Michelle', content: 'Hello there!'};
+      // const messages = this.state.messages.push(newMessage);
+      // this.setState({ messages: messages });
+    }
+  }
+
   render() {
+    console.log('rendering <App />');
     return (
       <div>
         <nav>
           <h1>Chatty</h1>
+          <span className='userCount'>{this.state.userCount} users online</span>
         </nav>
         <MessageList messages={this.state.messages}/>
-        <ChatBar/>
+        <ChatBar
+          currentUser={this.state.currentUser}
+          handleUser={this.handleUser}
+          onKeyUp={this.handleMsg}
+        />
       </div>
     );
   }
 }
-
 export default App;
